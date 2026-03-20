@@ -7,13 +7,14 @@ public class Main {
         Scanner input = new Scanner(new File("clubs.txt"));
         Scanner newMatches = new Scanner(new File("matches.txt"));
 
-        ArrayList<Club> clubs = new ArrayList<>();
+        Map<String, Club> clubList = new HashMap<>();
         ArrayList<Match> matches = new ArrayList<>();
 
         // populates clubs[] with clubs and their info
         while (input.hasNextLine()) {
             String clubInfo = input.nextLine();
-            clubs.add(new Club(clubInfo));
+            String[] info = clubInfo.split(" ");
+            clubList.put(info[0], new Club(info));
         }
 
         // examines match type and populates matches[] accordingly
@@ -22,13 +23,13 @@ public class Main {
             String matchInfo = newMatches.nextLine();
             switch (matchType) {
                 case "L":
-                    // matches.add(new LeagueMatch(matchInfo));
+                    // matches.add(new LeagueMatch(matchInfo, clubList));
                     break;
                 case "C":
-                    // matches.add(new CupMatch(matchInfo));
+                    // matches.add(new CupMatch(matchInfo, clubList));
                     break;
                 case "F":
-                    // matches.add(new FriendlyMatch(matchInfo));
+                    // matches.add(new FriendlyMatch(matchInfo, clubList));
                     break;
                 default:
                     throw new IllegalStateException("Unexpected match type: " + matchType);
