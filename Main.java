@@ -13,7 +13,7 @@ public class Main {
         // populates clubs[] with clubs and their info
         while (input.hasNextLine()) {
             String clubInfo = input.nextLine();
-            // clubs.add(new Club(clubInfo));
+            clubs.add(new Club(clubInfo));
         }
 
         // examines match type and populates matches[] accordingly
