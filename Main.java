@@ -4,8 +4,20 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner clubInput = new Scanner(new File("clubs.txt"));
-        Scanner matchInput = new Scanner(new File("matches.txt"));
+        String club = "clubs.txt";
+        String match = "matches.txt";
+        String output = "export.txt";
+
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-c" -> club = args[++i];
+                case "-m" -> match = args[++i];
+                case "-o" -> output = args[++i];
+            }
+        }
+
+        Scanner clubInput = new Scanner(new File(club));
+        Scanner matchInput = new Scanner(new File(match));
 
         Map<String, Club> clubList = new HashMap<>();
         Set<Match> matches = new HashSet<>();
@@ -21,7 +33,7 @@ public class Main {
             m.play();
         }
 
-        PrintWriter pw = new PrintWriter("export.txt");
+        PrintWriter pw = new PrintWriter(output);
         output(pw, clubList);
     }
 
