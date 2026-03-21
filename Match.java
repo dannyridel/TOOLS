@@ -8,7 +8,7 @@ public abstract class Match {
     protected final double result;
 
     public Match(String s, Map<String, Club> clubList) {
-        String[] info = s.split(" ");
+        String[] info = s.split("\\s+");
         this.homeTeam = clubList.get(info[0]);
         this.homeScore = Integer.parseInt(info[1]);
         this.awayTeam = clubList.get(info[4]);
@@ -35,6 +35,9 @@ public abstract class Match {
         double homeDelta = weight * (result - predict());
         homeTeam.runMatch(homeDelta);
         awayTeam.runMatch(-homeDelta);
+
+        System.out.println(homeTeam.toString());
+        System.out.println(awayTeam.toString());
     }
 
     public abstract int getWeight();

@@ -13,7 +13,7 @@ public class Main {
         // populates clubs[] with clubs and their info
         while (input.hasNextLine()) {
             String clubInfo = input.nextLine();
-            String[] info = clubInfo.split(" ");
+            String[] info = clubInfo.split("\\s+");
             clubList.put(info[0], new Club(info));
         }
 
@@ -37,5 +37,8 @@ public class Main {
         }
 
         // now we have to process each match
+        for (Match m : matches) {
+            m.play();
+        }
     }
 }
