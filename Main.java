@@ -8,7 +8,7 @@ public class Main {
         Scanner newMatches = new Scanner(new File("matches.txt"));
 
         Map<String, Club> clubList = new HashMap<>();
-        ArrayList<Match> matches = new ArrayList<>();
+        Set<Match> matches = new HashSet<>();
 
         // populates clubs[] with clubs and their info
         while (input.hasNextLine()) {
@@ -38,7 +38,7 @@ public class Main {
                     matches.add(new CupMatch(matchInfo, clubList));
                     break;
                 case "F":
-                    // matches.add(new FriendlyMatch(matchInfo, clubList));
+                    matches.add(new FriendlyMatch(matchInfo, clubList));
                     break;
                 default:
                     throw new IllegalStateException("Unexpected match type: " + matchType);
@@ -50,8 +50,16 @@ public class Main {
             m.play();
         }
 
-        for (Club c : clubList.values()) {
-            System.out.println(c);
+        PrintWriter pw = new PrintWriter("export.txt");
+        output(pw, clubList);
+    }
+
+    public static void output(PrintWriter pw, Map<String, Club> clubMap) {
+        List<Club> clubList = new ArrayList<>(clubMap.values());
+        Collections.sort(clubList);
+        for (Club c : clubList) {
+            pw.println(c);
         }
+        pw.close();
     }
 }

@@ -1,7 +1,7 @@
 import java.util.Map;
 
-public class CupMatch extends Match{
-    public CupMatch(String s, Map<String, Club> clubList) {
+public class FriendlyMatch extends Match{
+    public FriendlyMatch(String s, Map<String, Club> clubList) {
         super(s, clubList);
     }
 
@@ -10,6 +10,6 @@ public class CupMatch extends Match{
     }
 
     public int getWeight() {
-        return 20;
+        return 4;
     }
 }

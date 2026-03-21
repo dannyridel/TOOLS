@@ -44,7 +44,7 @@ public abstract class Match {
     public void play() {
         double weight = getWeight();
         if (homeScore != awayScore) {
-            double marginAdjustment = 1 + 0.25 * Math.log(Math.abs(homeScore - awayScore));
+            double marginAdjustment = 1 + 0.1 * Math.log(Math.abs(homeScore - awayScore));
             weight = weight * marginAdjustment;
         }
 

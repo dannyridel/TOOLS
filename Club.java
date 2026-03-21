@@ -1,6 +1,6 @@
 // any imports
 
-public class Club {
+public class Club implements Comparable<Club> {
     private final String name;
     private double elo;
     private int gamesPlayed;
@@ -19,6 +19,16 @@ public class Club {
 
     public String toString() {
         return String.format("%s  %.2f  %d", name, elo, gamesPlayed);
+    }
+
+    public int compareTo(Club other) {
+        if (this.elo - other.elo > 0) {
+            return -1;
+        } else if (this.elo == other.elo) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     public void updateElo(double delta) {
