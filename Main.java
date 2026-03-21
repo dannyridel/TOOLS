@@ -13,8 +13,17 @@ public class Main {
         // populates clubs[] with clubs and their info
         while (input.hasNextLine()) {
             String clubInfo = input.nextLine();
-            String[] info = clubInfo.split("\\s+");
-            clubList.put(info[0], new Club(info));
+            Scanner info = new Scanner(clubInfo);
+            String name = "";
+
+            while (! info.hasNextDouble()) {
+                name += info.next() + " ";
+            }
+            name = name.substring(0, name.length() - 1);
+            double elo = info.nextDouble();
+            int gamesPlayed = info.nextInt();
+
+            clubList.put(name, new Club(name, elo, gamesPlayed));
         }
 
         // examines match type and populates matches[] accordingly
@@ -39,6 +48,10 @@ public class Main {
         // now we have to process each match
         for (Match m : matches) {
             m.play();
+        }
+
+        for (Club c : clubList.values()) {
+            System.out.println(c);
         }
     }
 }

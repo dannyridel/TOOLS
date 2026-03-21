@@ -5,10 +5,10 @@ public class Club {
     private double elo;
     private int gamesPlayed;
 
-    public Club(String[] info) {
-        this.name = info[0];
-        this.elo = Double.parseDouble(info[1]);
-        this.gamesPlayed = Integer.parseInt(info[2]);
+    public Club(String name, double elo, int gamesPlayed) {
+        this.name = name;
+        this.elo = elo;
+        this.gamesPlayed = gamesPlayed;
     }
 
     public void runMatch(double delta) {

@@ -8,11 +8,26 @@ public abstract class Match {
     protected final double result;
 
     public Match(String s, Map<String, Club> clubList) {
-        String[] info = s.split("\\s+");
-        this.homeTeam = clubList.get(info[0]);
-        this.homeScore = Integer.parseInt(info[1]);
-        this.awayTeam = clubList.get(info[4]);
-        this.awayScore = Integer.parseInt(info[3]);
+        Scanner info = new Scanner(s);
+        String homeTeamName = "";
+        String awayTeamName = "";
+
+        while (! info.hasNextInt()) {
+            homeTeamName += info.next() + " ";
+        }
+        homeTeamName = homeTeamName.substring(0, homeTeamName.length() - 1);
+        homeScore = info.nextInt();
+        info.next();
+        awayScore = info.nextInt();
+
+        while (info.hasNext()) {
+            awayTeamName += info.next() + " ";
+        }
+        awayTeamName = awayTeamName.substring(0, awayTeamName.length() - 1);
+
+        homeTeam = clubList.get(homeTeamName);
+        awayTeam = clubList.get(awayTeamName);
+
         if (homeScore > awayScore) {
             this.result = 1;
         } else if (homeScore == awayScore) {
@@ -21,23 +36,25 @@ public abstract class Match {
             this.result = 0;
         }
     }
+
     // abstract method, returns the win expectation for the home team
     public abstract double predict();
 
     // uses the calculated expectation to update Clubs' elo
     public void play() {
-        int weight = getWeight();
+        double weight = getWeight();
         if (homeScore != awayScore) {
-            double marginAdjustment = 1 + Math.log(Math.abs(homeScore - awayScore));
-            weight = (int) (weight * marginAdjustment);
+            double marginAdjustment = 1 + 0.25 * Math.log(Math.abs(homeScore - awayScore));
+            weight = weight * marginAdjustment;
         }
 
         double homeDelta = weight * (result - predict());
         homeTeam.runMatch(homeDelta);
         awayTeam.runMatch(-homeDelta);
+    }
 
-        System.out.println(homeTeam.toString());
-        System.out.println(awayTeam.toString());
+    public String toString() {
+        return homeTeam.getName() + " " + homeScore + " : " + awayScore + " " + awayTeam.getName();
     }
 
     public abstract int getWeight();
