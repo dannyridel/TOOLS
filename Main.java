@@ -23,10 +23,10 @@ public class Main {
             String matchInfo = newMatches.nextLine();
             switch (matchType) {
                 case "L":
-                    // matches.add(new LeagueMatch(matchInfo, clubList));
+                    matches.add(new LeagueMatch(matchInfo, clubList));
                     break;
                 case "C":
-                    // matches.add(new CupMatch(matchInfo, clubList));
+                    matches.add(new CupMatch(matchInfo, clubList));
                     break;
                 case "F":
                     // matches.add(new FriendlyMatch(matchInfo, clubList));
