@@ -6,11 +6,11 @@ public class LeagueMatch extends Match{
     }
 
     public double predict() {
-        double homeElo = homeTeam.getElo() + 20;
+        double homeElo = homeTeam.getElo() + 30;
         return 1 / (1 + Math.pow(10, (awayTeam.getElo() - homeElo) / 400));
     }
 
     public int getWeight() {
-        return 24;
+        return 30;
     }
 }

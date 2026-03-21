@@ -10,6 +10,6 @@ public class CupMatch extends Match{
     }
 
     public int getWeight() {
-        return 20;
+        return 25;
     }
 }

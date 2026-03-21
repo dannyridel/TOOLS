@@ -10,6 +10,6 @@ public class FriendlyMatch extends Match{
     }
 
     public int getWeight() {
-        return 4;
+        return 5;
     }
 }
