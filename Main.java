@@ -8,6 +8,7 @@ public class Main {
         String history = "";
         String match = "matches.txt";
         String output = "export.txt";
+        boolean parse = false;
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -15,17 +16,20 @@ public class Main {
                 case "-h" -> history = args[++i];
                 case "-m" -> match = args[++i];
                 case "-o" -> output = args[++i];
+                case "-p" -> parse = true;
             }
         }
-
-        Scanner clubInput = new Scanner(new File(club));
-
-        Scanner matchInput = new Scanner(new File(match));
 
         Map<String, Club> clubMap = new HashMap<>();
         Set<Match> matches = new HashSet<>();
 
+        if (parse) {
+            ChatParser.parse(match);
+            match = "parsed_" + match;
+        }
+
         // populates clubs[] with clubs and their info
+        Scanner clubInput = new Scanner(new File(club));
         clubInput(clubInput, clubMap);
 
         // populates historical elo records (if any)
@@ -37,6 +41,7 @@ public class Main {
         }
 
         // examines match type and populates matches[] accordingly
+        Scanner matchInput = new Scanner(new File(match));
         matchInput(matchInput, matches, clubMap);
 
         // now we have to process each match
