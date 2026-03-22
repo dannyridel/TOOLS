@@ -33,7 +33,7 @@ public class Main {
         clubInput(clubInput, clubMap);
 
         // populates historical elo records (if any)
-        if (! history.equals("")) {
+        if (! history.isEmpty()) {
             Scanner historyInput = new Scanner(new File(history));
             clubHistoryInput(historyInput, clubMap);
         } else {
