@@ -22,29 +22,29 @@ public class Main {
         Scanner historyInput = new Scanner(new File(history));
         Scanner matchInput = new Scanner(new File(match));
 
-        Map<String, Club> clubList = new HashMap<>();
+        Map<String, Club> clubMap = new HashMap<>();
         Set<Match> matches = new HashSet<>();
 
         // populates clubs[] with clubs and their info
-        clubInput(clubInput, clubList);
+        clubInput(clubInput, clubMap);
 
         // populates historical elo records (if any)
-        clubHistoryInput(historyInput, clubList);
+        clubHistoryInput(historyInput, clubMap);
 
         // examines match type and populates matches[] accordingly
-        matchInput(matchInput, matches, clubList);
+        matchInput(matchInput, matches, clubMap);
 
         // now we have to process each match
         for (Match m : matches) {
             m.play();
         }
 
-        List<Club> clubs = new ArrayList<>(clubList.values());
-        Collections.sort(clubs);
+        List<Club> clubList = new ArrayList<>(clubMap.values());
+        Collections.sort(clubList);
         PrintWriter pw = new PrintWriter(output);
-        clubOutput(pw, clubs);
+        clubOutput(pw, clubList);
         PrintWriter csv = new PrintWriter(history);
-        historyOutput(csv, clubs);
+        historyOutput(csv, clubList);
     }
 
 
@@ -100,14 +100,14 @@ public class Main {
         }
     }
 
-    public static void clubOutput(PrintWriter pw, ArrayList<Club> clubList) {
+    public static void clubOutput(PrintWriter pw, List<Club> clubList) {
         for (Club c : clubList) {
             pw.println(c);
         }
         pw.close();
     }
 
-    public static void historyOutput(PrintWriter pw, ArrayList<Club> clubList) {
+    public static void historyOutput(PrintWriter pw, List<Club> clubList) {
         for (Club c : clubList) {
             pw.println(c.printHistory());
         }
