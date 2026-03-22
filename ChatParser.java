@@ -25,5 +25,8 @@ public class ChatParser {
                 pw.println(line);
             }
         }
+
+        input.close();
+        pw.close();
     }
 }

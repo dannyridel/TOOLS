@@ -44,13 +44,15 @@ public class Main {
         Scanner matchInput = new Scanner(new File(match));
         matchInput(matchInput, matches, clubMap);
 
-        // now we have to process each match
+        // processes each match result
         for (Match m : matches) {
             m.play();
         }
 
+        // exports all results and updated elo histories
         List<Club> clubList = new ArrayList<>(clubMap.values());
         Collections.sort(clubList);
+
         PrintWriter pw = new PrintWriter(output);
         clubOutput(pw, clubList);
         PrintWriter csv = new PrintWriter(history);
