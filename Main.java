@@ -9,6 +9,8 @@ public class Main {
         String match = "matches.txt";
         String output = "export.txt";
         boolean parse = false;
+        boolean aggregate = false;
+        String[] toAgg = new String[3];
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -17,11 +19,29 @@ public class Main {
                 case "-m" -> match = args[++i];
                 case "-o" -> output = args[++i];
                 case "-p" -> parse = true;
+                case "-a" -> {
+                    aggregate = true;
+                    for (int j = 0; j < toAgg.length; j++) {
+                        toAgg[j] = args[i+j+1];
+                    }
+                }
             }
         }
 
         Map<String, Club> clubMap = new HashMap<>();
         Set<Match> matches = new HashSet<>();
+
+        if (aggregate) {
+            if (parse) {
+                for (int i = 0; i < toAgg.length; i++) {
+                    ChatParser.parse(toAgg[i]);
+                    toAgg[i] = "parsed_" + toAgg[i];
+                }
+            }
+            MatchAggregator.aggregate(toAgg);
+            parse = false;
+            match = "aggregatedMatch.txt";
+        }
 
         if (parse) {
             ChatParser.parse(match);
