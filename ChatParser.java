@@ -22,6 +22,7 @@ public class ChatParser {
             }
 
             if (active) {
+                line = line.replace("Luchadores", "Los Cabos United");
                 pw.println(line);
             }
         }
