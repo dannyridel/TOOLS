@@ -34,9 +34,9 @@ public class Club implements Comparable<Club> {
     }
 
     public String printHistory() {
-        String toReturn = "";
+        String toReturn = name + ",";
         for (double d : eloHistory) {
-            toReturn += d + ",";
+            toReturn += String.format("%.2f,", d);
         }
         return toReturn.substring(0, toReturn.length() - 1);
     }
