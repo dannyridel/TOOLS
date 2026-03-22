@@ -3,7 +3,7 @@ import java.util.*;
 public class Club implements Comparable<Club> {
     private final String name;
     private int gamesPlayed;
-    private Deque<Double> eloHistory;
+    private final Deque<Double> eloHistory;
 
     public Club(String name, double elo, int gamesPlayed) {
         this.eloHistory = new LinkedList<>();

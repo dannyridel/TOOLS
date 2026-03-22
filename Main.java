@@ -108,6 +108,11 @@ public class Main {
     }
 
     public static void historyOutput(PrintWriter pw, Map<String, Club> clubMap) {
-
+        List<Club> clubList = new ArrayList<>(clubMap.values());
+        Collections.sort(clubList);
+        for (Club c : clubList) {
+            pw.println(c.printHistory());
+        }
+        pw.close();
     }
 }
