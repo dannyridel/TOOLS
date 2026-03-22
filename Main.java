@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         String club = "clubs.txt";
-        String history = "history.csv";
+        String history = "";
         String match = "matches.txt";
         String output = "export.txt";
 
@@ -19,7 +19,7 @@ public class Main {
         }
 
         Scanner clubInput = new Scanner(new File(club));
-        Scanner historyInput = new Scanner(new File(history));
+
         Scanner matchInput = new Scanner(new File(match));
 
         Map<String, Club> clubMap = new HashMap<>();
@@ -29,7 +29,12 @@ public class Main {
         clubInput(clubInput, clubMap);
 
         // populates historical elo records (if any)
-        clubHistoryInput(historyInput, clubMap);
+        if (! history.equals("")) {
+            Scanner historyInput = new Scanner(new File(history));
+            clubHistoryInput(historyInput, clubMap);
+        } else {
+            history = "history.csv";
+        }
 
         // examines match type and populates matches[] accordingly
         matchInput(matchInput, matches, clubMap);
