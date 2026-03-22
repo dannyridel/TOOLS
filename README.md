@@ -1,7 +1,7 @@
 The Open Open League Simulator. WIP.
 
 
-## Input Format:
+### Input Format:
 
 Club File:
 ```
@@ -15,7 +15,7 @@ HomeTeam Score : Score AwayTeam
 ```
 Multiple matchtypes may be specified in a single match file by restating the matchtype before the relevant scoreline.
 
-Command Line Instructions:
+### Command Line Instructions:
 `-m`: match file
 `-c`: club file
 `-o`: output file

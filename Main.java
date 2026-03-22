@@ -5,18 +5,21 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         String club = "clubs.txt";
+        String history = "history.csv";
         String match = "matches.txt";
         String output = "export.txt";
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-c" -> club = args[++i];
+                case "-h" -> history = args[++i];
                 case "-m" -> match = args[++i];
                 case "-o" -> output = args[++i];
             }
         }
 
         Scanner clubInput = new Scanner(new File(club));
+        Scanner historyInput = new Scanner(new File(history));
         Scanner matchInput = new Scanner(new File(match));
 
         Map<String, Club> clubList = new HashMap<>();
@@ -24,6 +27,9 @@ public class Main {
 
         // populates clubs[] with clubs and their info
         clubInput(clubInput, clubList);
+
+        // populates historical elo records (if any)
+        clubHistoryInput(historyInput, clubList);
 
         // examines match type and populates matches[] accordingly
         matchInput(matchInput, matches, clubList);
@@ -34,7 +40,9 @@ public class Main {
         }
 
         PrintWriter pw = new PrintWriter(output);
-        output(pw, clubList);
+        clubOutput(pw, clubList);
+        PrintWriter csv = new PrintWriter(history);
+        historyOutput(csv, clubList);
     }
 
 
@@ -53,6 +61,17 @@ public class Main {
 
             clubList.put(name, new Club(name, elo, gamesPlayed));
         }
+    }
+
+    public static void clubHistoryInput(Scanner history, Map<String, Club> clubList) {
+        while (history.hasNextLine()) {
+            String[] clubHistory = history.nextLine().split(",");
+            Club club = clubList.get(clubHistory[0]);
+            for (int i = 1; i < clubHistory.length; i++) {
+                club.setElo(Double.parseDouble(clubHistory[i]));
+            }
+        }
+        history.close();
     }
 
     public static void matchInput(Scanner matchInput, Set<Match> matches, Map<String, Club> clubList) {
@@ -79,12 +98,16 @@ public class Main {
         }
     }
 
-    public static void output(PrintWriter pw, Map<String, Club> clubMap) {
+    public static void clubOutput(PrintWriter pw, Map<String, Club> clubMap) {
         List<Club> clubList = new ArrayList<>(clubMap.values());
         Collections.sort(clubList);
         for (Club c : clubList) {
             pw.println(c);
         }
         pw.close();
+    }
+
+    public static void historyOutput(PrintWriter pw, Map<String, Club> clubMap) {
+
     }
 }
