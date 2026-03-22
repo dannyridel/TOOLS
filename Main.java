@@ -39,10 +39,12 @@ public class Main {
             m.play();
         }
 
+        List<Club> clubs = new ArrayList<>(clubList.values());
+        Collections.sort(clubs);
         PrintWriter pw = new PrintWriter(output);
-        clubOutput(pw, clubList);
+        clubOutput(pw, clubs);
         PrintWriter csv = new PrintWriter(history);
-        historyOutput(csv, clubList);
+        historyOutput(csv, clubs);
     }
 
 
@@ -98,18 +100,14 @@ public class Main {
         }
     }
 
-    public static void clubOutput(PrintWriter pw, Map<String, Club> clubMap) {
-        List<Club> clubList = new ArrayList<>(clubMap.values());
-        Collections.sort(clubList);
+    public static void clubOutput(PrintWriter pw, ArrayList<Club> clubList) {
         for (Club c : clubList) {
             pw.println(c);
         }
         pw.close();
     }
 
-    public static void historyOutput(PrintWriter pw, Map<String, Club> clubMap) {
-        List<Club> clubList = new ArrayList<>(clubMap.values());
-        Collections.sort(clubList);
+    public static void historyOutput(PrintWriter pw, ArrayList<Club> clubList) {
         for (Club c : clubList) {
             pw.println(c.printHistory());
         }
