@@ -25,6 +25,10 @@ public class Main {
                         toAgg[j] = args[++i];
                     }
                 }
+                case "-e" -> {
+                    club = "export.txt";
+                    history = "history.csv";
+                }
             }
         }
 

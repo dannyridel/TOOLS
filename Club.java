@@ -43,7 +43,7 @@ public class Club implements Comparable<Club> {
     }
 
     public void setElo(double elo) {
-        if (eloHistory.size() == 100) {
+        while (eloHistory.size() == 100) {
             eloHistory.removeFirst();
         }
         eloHistory.addLast(elo);
