@@ -22,14 +22,14 @@ public class Main {
                 case "-a" -> {
                     aggregate = true;
                     for (int j = 0; j < toAgg.length; j++) {
-                        toAgg[j] = args[i+j+1];
+                        toAgg[j] = args[++i];
                     }
                 }
             }
         }
 
         Map<String, Club> clubMap = new HashMap<>();
-        Set<Match> matches = new HashSet<>();
+        Set<Match> matches = new LinkedHashSet<>();
 
         if (aggregate) {
             if (parse) {
@@ -101,6 +101,8 @@ public class Main {
         while (history.hasNextLine()) {
             String[] clubHistory = history.nextLine().split(",");
             Club club = clubList.get(clubHistory[0]);
+            club.clearHistory();
+
             for (int i = 1; i < clubHistory.length; i++) {
                 club.setElo(Double.parseDouble(clubHistory[i]));
             }

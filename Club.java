@@ -23,14 +23,7 @@ public class Club implements Comparable<Club> {
     }
 
     public int compareTo(Club other) {
-        double elo = getElo();
-        if (elo - other.getElo() > 0) {
-            return -1;
-        } else if (elo == other.getElo()) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return Double.compare(other.getElo(), getElo());
     }
 
     public String printHistory() {
@@ -41,11 +34,12 @@ public class Club implements Comparable<Club> {
         return toReturn.substring(0, toReturn.length() - 1);
     }
 
+    public void clearHistory() {
+        eloHistory.clear();
+    }
+
     public void updateElo(double delta) {
-        if (eloHistory.size() == 50) {
-            eloHistory.removeFirst();
-        }
-        eloHistory.addLast(eloHistory.getLast() + delta);
+        setElo(getElo() + delta);
     }
 
     public void setElo(double elo) {
