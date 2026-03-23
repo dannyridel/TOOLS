@@ -17,7 +17,7 @@ public class ChatParser {
             if (line.contains("All matches have ended across the league.")) {
                 active = true;
                 line = "L";
-            } else if (line.contains(" PM") || line.contains(" AM")) {
+            } else if (line.contains(" PM") || line.contains(" AM") || line.contains("=")) {
                 active = false;
             }
 
