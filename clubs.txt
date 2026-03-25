@@ -1,0 +1,30 @@
+Alberta SC	500	0
+Barts Hospital	500	0
+BBZ F.C.	500	0
+Berlin Mayhem	500	0
+Blue Devils Busan	500	0
+Cobras United	500	0
+Copthorne S.A.	500	0
+Cordoba Gauchos	500	0
+Cusco Conductores	500	0
+Doha Falcons	500	0
+Giza Club	500	0
+Great OSV	500	0
+Himachal Avalanche	500	0
+Ile-de-France Foot	500	0
+Lagos Sunshine FC	500	0
+Los Cabos United	500	0
+Melbourne United	500	0
+Mumbai Leopards	500	0
+Olympians Cariocas	500	0
+Porto Alegre International	500	0
+Raizes Sao Paulo	500	0
+Revolucao Sao Paulo	500	0
+Rotorua Savages	500	0
+Royal Cambridge FC	500	0
+San Lorenzo Bulls	500	0
+Sarabi SC	500	0
+Sons of the Sahya	500	0
+Sycamore FC	500	0
+The Gymnastic Society	500	0
+Valparaiso Mariners AC	500	0
