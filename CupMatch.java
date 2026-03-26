@@ -6,7 +6,7 @@ public class CupMatch extends Match{
     }
 
     public double predict() {
-        return 1 / (1 + Math.pow(10, awayTeam.getElo() - homeTeam.getElo()) / 400);
+        return 1 / (1 + Math.pow(10, (awayTeam.getElo() - homeTeam.getElo()) / 400));
     }
 
     public int getWeight() {
